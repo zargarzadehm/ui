@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
+    "build:vercel": "npm run build --workspace ../../packages/constants && npm run build --workspace ../../packages/types && npm run build --workspace ../../packages/utils && npm run build --workspace ../../packages --if-present && npm run build --workspace ../../wallets/wallet-api && npm run build --workspace ../../wallets --if-present && npm run build",
     "prettify": "prettier --write . --ignore-path ./.gitignore",
     "lint": "next lint --fix && npm run prettify",
     "type-check": "tsc --noEmit",
