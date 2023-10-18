@@ -40,3 +40,4 @@ export interface CardanoWallet extends Wallet, Prover {
 export * from './assetEntry';
 export * from './serlib';
 export * from './cardanoWasmLoader';
+export * from './transaction/transfer';

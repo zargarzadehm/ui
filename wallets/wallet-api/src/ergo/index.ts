@@ -32,3 +32,5 @@ export interface ErgoWallet extends Wallet, Prover {
   readonly submitTx?: (tx: ErgoTx) => TxId;
   readonly hidden?: boolean;
 }
+
+export * from './transaction/transfer';

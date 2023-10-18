@@ -36,11 +36,6 @@ const useBridgeForm = () => {
   const { field: addressField } = useController({
     name: 'walletAddress',
     control,
-    rules: {
-      required: true,
-      validate: async (value) =>
-        (await validateAddress(sourceField.value, value)).message,
-    },
   });
 
   return {

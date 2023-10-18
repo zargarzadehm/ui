@@ -1,10 +1,37 @@
 import { useEffect, useContext, useCallback, useRef } from 'react';
-import { Wallet } from '@rosen-ui/wallet-api';
+import {
+  ConnectorContextApi,
+  ErgoBridge,
+  Wallet,
+  transferOnCardano,
+  transferOnErgo,
+} from '@rosen-ui/wallet-api';
 import { useLocalStorageManager } from '@rosen-ui/utils';
 
 import useNetwork from './useNetwork';
 
 import { WalletContext } from '@/_contexts/walletContext';
+import Nami from '@rosen-ui/nami-wallet';
+
+interface ConnectorAPI {
+  enable(): Promise<ConnectorContextApi>;
+  isEnabled(): Promise<boolean>;
+  experimental?: unknown;
+}
+declare global {
+  let cardano: { [key: string]: ConnectorAPI };
+}
+
+declare global {
+  let ergoConnector: {
+    nautilus: {
+      connect: (params: { createErgoObject: boolean }) => Promise<boolean>;
+      getContext: () => Promise<ErgoBridge>;
+    };
+  };
+
+  let ergo: ErgoBridge;
+}
 
 interface WalletDescriptor {
   readonly name: string;
@@ -106,6 +133,31 @@ const useWallet = () => {
         selectedWallet: walletGlobalContext?.state.selectedWallet,
         availableWallets: selectedNetwork.availableWallets,
         getBalance: walletGlobalContext?.state.selectedWallet?.getBalance,
+        transfer: async (data: any) => {
+          // const wallet = await cardano.nami.enable()
+          // transferOnCardano(
+          //   wallet,
+          //   'addr1v9kmp9flrq8gzh287q4kku8vmad3vkrw0rwqvjas6vyrf9s9at4dn',
+          //   'ergo',
+          //   '9gcrKn7L5Ln3rRsjFoSEkEsovUdb5JR5d6o2vHQV5FCXXNkkEAD',
+          //   'e0c24b2010068e55bc8f860978d52ee8e62d9af06f106f1fa0d0fd0b',
+          //   '727074574e4556310a',
+          //   555426n,
+          //   248000n,
+          //   248n
+          // )
+          const wallet = await ergoConnector.nautilus.getContext();
+          transferOnErgo(
+            wallet,
+            'nB3L2PD3JzpCPns7SoypaDJTg4KbG6UQBPknQuM3WZ4ZhPj3TGV5R5YArit7trzUum77qJ76JLLiJfW3Au8o3AvMh1suY2rcRm1UPfroUiTZfQrNL8izs6CBJYwMLf5jDSt3YwcFEPVYG',
+            'cardano',
+            'addr1q9nwglllt7j00yf40wveac2tgtmxxy7y06nturs6l83wn9g37djlnz5hmmmkxenxl8mwql6h96gu7ztphgxjf0ngwhfqwadm7d',
+            'erg',
+            5577148568n,
+            2000000000n,
+            800000000n,
+          );
+        },
       }
     : {};
 };

@@ -43,14 +43,14 @@ const BridgeTransaction = () => {
     receivingAmount,
     isLoading: isLoadingFees,
   } = useTransactionFees(sourceValue, tokenValue, amountValue);
-  const { setSelectedWallet, availableWallets, selectedWallet } = useWallet();
+  const { setSelectedWallet, availableWallets, selectedWallet, transfer } =
+    useWallet();
 
   const tokenInfo = tokenValue && getTokenNameAndId(tokenValue, sourceValue);
   const WalletIcon = selectedWallet?.icon;
 
-  const handleFormSubmit = handleSubmit(() => {
-    //TODO: add create and handle transaction logic
-    //local:ergo/rosen-bridge/ui/-/issues/90
+  const handleFormSubmit = handleSubmit((data) => {
+    transfer!(data);
   });
 
   const renderFee = (
