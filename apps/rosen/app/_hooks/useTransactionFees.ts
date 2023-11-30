@@ -77,6 +77,7 @@ const useTransactionFees = (
           ErgoNetwork.api.explorerUrl,
           selectedNetwork.nextHeightInterval,
         );
+        console.warn('@@@@@@@@@@@@@@@', data);
         if (data.status === 'success') {
           const parsedData = {
             ...data,
@@ -126,6 +127,8 @@ const useTransactionFees = (
       : 0;
 
     const minTransferAmountValue = bridgeFeeBase! + networkFee!;
+
+    console.warn(feeInfo.current);
 
     return {
       bridgeFee: getDecimalString(
