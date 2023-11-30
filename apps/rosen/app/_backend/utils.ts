@@ -6,10 +6,14 @@ import { fileURLToPath } from 'url';
  * get rosen tokens object from tokensMap file or throw error if file is missing
  */
 export const getRosenTokens = () => {
-  console.warn(process.cwd());
-  console.warn(fs.readdirSync(process.env.LS1!));
-  console.warn(fs.readdirSync(process.env.LS2!));
-  console.warn(fs.readdirSync(process.env.LS3!));
+  try {
+    console.log('########### cwd:', process.cwd());
+    console.log('$$$$$$$$$$$ LS1: ', fs.readdirSync(process.env.LS1!));
+    console.log('$$$$$$$$$$$ LS2: ', fs.readdirSync(process.env.LS2!));
+    console.log('$$$$$$$$$$$ LS3: ', fs.readdirSync(process.env.LS3!));
+  } catch (error) {
+    console.warn('Ye etefaghe badi oftad', error);
+  }
   const tokensMapFilePath = path.resolve(
     path.dirname(fileURLToPath(import.meta.url)),
     '../../configs/tokensMap.json',
