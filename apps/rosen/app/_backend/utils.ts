@@ -2,6 +2,11 @@ import fs from 'fs';
 import path from 'path';
 import { fileURLToPath } from 'url';
 
+const x = path.resolve(
+  path.dirname(fileURLToPath(import.meta.url)),
+  '../../configs/tokensMap.json',
+);
+
 /**
  * get rosen tokens object from tokensMap file or throw error if file is missing
  */
