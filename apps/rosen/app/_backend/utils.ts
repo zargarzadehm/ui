@@ -8,6 +8,8 @@ import { fileURLToPath } from 'url';
 export const getRosenTokens = () => {
   try {
     console.log('########### cwd:', process.cwd());
+    console.log('dirname ', __dirname);
+    console.log('import meta url ', fileURLToPath(import.meta.url));
     console.log('$$$$$$$$$$$ LS1: ', fs.readdirSync(process.env.LS1!));
     console.log('$$$$$$$$$$$ LS2: ', fs.readdirSync(process.env.LS2!));
     console.log('$$$$$$$$$$$ LS3: ', fs.readdirSync(process.env.LS3!));
