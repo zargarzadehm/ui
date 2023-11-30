@@ -1,6 +1,6 @@
 export const register = async () => {
   try {
-    console.log('!!!!!!!!!!!!!!!!! CWD in instrumentation: ', process.cwd);
+    console.log('!!!!!!!!!!!!!!!!! CWD in instrumentation: ', process.cwd());
   } catch (error) {
     console.warn('Ye etefaghe dige', error);
   }
