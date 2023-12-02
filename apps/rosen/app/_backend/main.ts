@@ -18,3 +18,7 @@ logger.info('data source initialized successfully');
 await dataSource.runMigrations();
 
 scannerService.start();
+
+process.on('unhandledRejection', (reason, promise) => {
+  console.warn('@@@@@@@@@@@@@@@@@@@@ unhandled: ', reason, promise);
+});
