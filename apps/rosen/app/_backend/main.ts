@@ -19,6 +19,10 @@ await dataSource.runMigrations();
 
 scannerService.start();
 
+fetch('https://api.koios.rest/api/v1/blocks?block_height=eq.9558336')
+  .then((data) => console.info('@@@@@@@@@@@@@@@ koios data', data))
+  .catch((error) => console.error('@@@@@@@@@@@@@ koios error', error));
+
 process.on('unhandledRejection', (reason, promise) => {
   console.warn('@@@@@@@@@@@@@@@@@@@@ unhandled: ', reason, promise);
 });

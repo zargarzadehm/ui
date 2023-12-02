@@ -8,14 +8,14 @@ import observationService from '../observation/observation-service';
  */
 const start = async () => {
   console.debug('@@@@@@@@@@@ before starting scanners');
-  const [ergoScanner, cardanoScanner] = await Promise.all([
+  const [ergoScanner] = await Promise.all([
     startErgoScanner(),
-    startCardanoScanner(),
+    // startCardanoScanner(),
   ]);
   console.debug('@@@@@@@@@@ scanners started. before registering extractors');
 
   observationService.registerErgoExtractor(ergoScanner);
-  observationService.registerCardanoExtractor(cardanoScanner);
+  // observationService.registerCardanoExtractor(cardanoScanner);
 
   console.debug('@@@@@@@@@ extractors registered');
 };
