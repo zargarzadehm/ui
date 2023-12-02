@@ -26,7 +26,7 @@ const startScannerUpdateJob = (
 
   const tryUpdating = async () => {
     try {
-      console.debug('@@@@@@@@@@@@@@ trying to update scanner', scanner.name);
+      console.debug('@@@@@@@@@@@@@@ trying to update scanner', scanner.name());
       await scanner.update();
     } catch (error) {
       console.warn(
@@ -51,10 +51,16 @@ export const startScanner = async (
   loggerFileName: string,
   updateInterval: number,
 ) => {
-  console.debug('@@@@@@@@@@@@@@@@@ before initializing scanner', scanner.name);
+  console.debug(
+    '@@@@@@@@@@@@@@@@@ before initializing scanner',
+    scanner.name(),
+  );
   await scanner.initialize();
 
-  console.debug('@@@@@@@@@@@@@ scanner initialized successfully', scanner.name);
+  console.debug(
+    '@@@@@@@@@@@@@ scanner initialized successfully',
+    scanner.name(),
+  );
 
   startScannerUpdateJob(scanner, loggerFileName, updateInterval);
 };
