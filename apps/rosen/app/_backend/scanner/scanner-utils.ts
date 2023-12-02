@@ -26,8 +26,12 @@ const startScannerUpdateJob = (
 
   const tryUpdating = async () => {
     try {
+      console.debug('@@@@@@@@@@@@@@ trying to update scanner', scanner.name);
       await scanner.update();
     } catch (error) {
+      console.warn(
+        `@@@@@@@@@@@@@@@ An error occurred while calling scanner update: ${error}`,
+      );
       logger.warn(`An error occurred while calling scanner update: ${error}`);
       console.warn('Status code: ', (error as any)?.response?.status);
     }
@@ -47,7 +51,10 @@ export const startScanner = async (
   loggerFileName: string,
   updateInterval: number,
 ) => {
+  console.debug('@@@@@@@@@@@@@@@@@ before initializing scanner', scanner.name);
   await scanner.initialize();
+
+  console.debug('@@@@@@@@@@@@@ scanner initialized successfully', scanner.name);
 
   startScannerUpdateJob(scanner, loggerFileName, updateInterval);
 };

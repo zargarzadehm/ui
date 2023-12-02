@@ -21,6 +21,7 @@ const scannerLogger = WinstonLogger.getInstance().getLogger(
  * periodically
  */
 export const startCardanoScanner = async () => {
+  console.debug('@@@@@@@@@@@@@@ before instantiating cardano scanner');
   const scanner = new CardanoKoiosScanner(
     {
       dataSource,
@@ -31,6 +32,7 @@ export const startCardanoScanner = async () => {
     scannerLogger,
   );
 
+  console.debug('@@@@@@@@@@@@@@@@ before starting cardano scanner');
   startScanner(scanner, import.meta.url, CARDANO_SCANNER_INTERVAL);
 
   return scanner;
