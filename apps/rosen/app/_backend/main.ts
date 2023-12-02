@@ -1,9 +1,6 @@
 import './bootstrap';
 
-const x = path.resolve(
-  path.dirname(fileURLToPath(import.meta.url)),
-  '../../configs/tokensMap.json',
-);
+path.resolve(process.cwd(), './configs/tokensMap.json');
 
 import WinstonLogger from '@rosen-bridge/winston-logger';
 

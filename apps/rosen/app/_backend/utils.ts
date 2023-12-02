@@ -2,10 +2,7 @@ import fs from 'fs';
 import path from 'path';
 import { fileURLToPath } from 'url';
 
-const x = path.resolve(
-  path.dirname(fileURLToPath(import.meta.url)),
-  '../../configs/tokensMap.json',
-);
+path.resolve(process.cwd(), './configs/tokensMap.json');
 
 /**
  * get rosen tokens object from tokensMap file or throw error if file is missing
@@ -22,8 +19,8 @@ export const getRosenTokens = () => {
     console.warn('Ye etefaghe badi oftad', error);
   }
   const tokensMapFilePath = path.resolve(
-    path.dirname(fileURLToPath(import.meta.url)),
-    '../../configs/tokensMap.json',
+    process.cwd(),
+    './configs/tokensMap.json',
   );
 
   if (fs.existsSync(tokensMapFilePath)) {
