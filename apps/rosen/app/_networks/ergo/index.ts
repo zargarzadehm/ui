@@ -47,6 +47,11 @@ const ErgoNetwork: Network<Wallet> = {
       ) => {
         const wallet = await getNautilusWallet().api.getContext();
         const tokenId = token.tokenId;
+        console.warn('>>> Before bigint: ', {
+          bridgeFee: decimalBridgeFee * 10 ** token.decimals,
+          networkFee: decimalNetworkFee * 10 ** token.decimals,
+          amount: decimalAmount * 10 ** token.decimals,
+        });
         const amount = BigInt(decimalAmount * 10 ** token.decimals);
         const bridgeFee = BigInt(decimalBridgeFee * 10 ** token.decimals);
         const networkFee = BigInt(decimalNetworkFee * 10 ** token.decimals);
@@ -54,6 +59,12 @@ const ErgoNetwork: Network<Wallet> = {
 
         const walletUtxos = await wallet.get_utxos();
         if (!walletUtxos) throw Error(`No box found`);
+
+        console.warn('>>> After bigint, before server action: ', {
+          bridgeFee,
+          networkFee,
+          amount,
+        });
 
         const unsignedTx = await generateUnsignedTx(
           changeAddress,

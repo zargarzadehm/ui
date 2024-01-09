@@ -40,6 +40,11 @@ export const generateUnsignedTx = async (
   bridgeFee: bigint,
   networkFee: bigint,
 ): Promise<UnsignedErgoTxProxy> => {
+  console.warn('>>> Inside server action: ', {
+    bridgeFee,
+    networkFee,
+    amount,
+  });
   const height = await getHeight();
 
   // generate lock box
