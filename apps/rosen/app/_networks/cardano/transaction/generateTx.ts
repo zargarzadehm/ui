@@ -78,12 +78,17 @@ export const generateUnsignedTx = async (
   const utxos = await Promise.all(walletUtxos.map(walletUtxoToCardanoUtxo));
   // add required ADA estimation for tx fee and change box
   requiredAssets.nativeToken += feeAndMinBoxValue;
+  console.log('@@@@@@@@@@@ args: ', policyIdHex, assetNameHex, amountString);
+
+  console.log('@@@@@@@@@@@ utxos: ');
+  console.table(utxos);
   // get input boxes
   const inputs = await selectCardanoUtxos(
     requiredAssets,
     [],
     new Map(),
     utxos.values(),
+    console,
   );
   if (!inputs.covered) throw Error(`Not enough assets`);
   let inputAssets: AssetBalance = {
