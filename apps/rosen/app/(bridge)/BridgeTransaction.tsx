@@ -223,7 +223,7 @@ const BridgeTransaction = () => {
             variant="contained"
             loading={isFormSubmitting || isTransactionSubmitting}
             type="submit"
-            disabled={!availableWallets}
+            disabled
             onClick={() => {
               if (!selectedWallet) {
                 setChooseWalletsModalOpen(true);

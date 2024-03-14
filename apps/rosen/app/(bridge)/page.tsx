@@ -3,8 +3,11 @@
 import { useForm, FormProvider } from 'react-hook-form';
 
 import {
+  Alert,
+  Box,
   Card,
   Divider,
+  Grid,
   styled,
   useResponsiveValue,
 } from '@rosen-bridge/ui-kit';
@@ -66,6 +69,13 @@ const RosenBridge = () => {
   return (
     <FormProvider {...methods}>
       <BridgeContainer>
+        <Box display="grid" gridColumn="1 / 4">
+          <Alert severity="warning">
+            There is an update ongoing in our watcher sets. During the update,
+            we will not accept new transfers. Stuck transfers will be processed
+            after the update.
+          </Alert>
+        </Box>
         <BridgeForm />
         <Divider orientation={separatorOrientation} flexItem />
         <BridgeTransaction />
